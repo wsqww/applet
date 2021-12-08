@@ -1,0 +1,18 @@
+<!-- miniprogram/pages/eat/eat.wxml -->
+<view class="page">
+  <view class="select-wrap">
+    <van-collapse value="{{ activeCells }}" bind:change="collapseOnChange">
+      <van-collapse-item wx:for="{{menus}}" wx:for-item="item" wx:for-index="typeIdx" wx:key="_id" title="{{item.name}}" name="{{item.type}}">
+        <van-cell-group>
+          <van-cell wx:for="{{item.menu}}" wx:for-item="menu" wx:for-index="menuIdx" wx:key="_id" bind:click="menuToggle(typeIdx, menuIdx, !item.checked)">
+            <van-checkbox name="{{menu.name}}"></van-checkbox>
+          </van-cell>
+        </van-cell-group>
+      </van-collapse-item>
+    </van-collapse>
+    <view>
+    </view>
+  </view>
+  <view class="result-wrap"></view>
+</view>
+<button size="default" type="primary" bind:tap="setResult">摇一摇</button>

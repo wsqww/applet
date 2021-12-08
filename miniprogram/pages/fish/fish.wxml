@@ -1,0 +1,4 @@
+<!--miniprogram/pages/fish.wxml-->
+<view class="page" bindtap="addTimes">
+  <view class="title">今日积德：{{times}}</view>
+</view>

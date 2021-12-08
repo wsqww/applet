@@ -1,0 +1,5 @@
+<!-- miniprogram/pages/eat/eat.wxml -->
+
+
+
+<button size="default" type="primary" bind:tap="setResult">摇一摇</button>

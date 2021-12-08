@@ -1,0 +1,13 @@
+<!-- miniprogram/pages/eat/eat.wxml -->
+
+<view class="page">
+  <view class="select-wrap">
+    <view wx:for="{{menus}}" wx:for-item="item">
+      {{item.type}}--{{item.name}}
+      <view wx:for="{{item.menu}}" wx:for-item="menu">{{menu.name}}</view>
+    </view>
+  </view>
+  <view class="result-wrap"></view>
+</view>
+
+<button size="default" type="primary" bind:tap="setResult">摇一摇</button>

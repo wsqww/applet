@@ -1,0 +1,10 @@
+<!-- miniprogram/pages/eat/eat.wxml -->
+
+<view class="page">
+  <view class="select-wrap">
+    
+  </view>
+  <view class="result-wrap"></view>
+</view>
+
+<button size="default" type="primary" bind:tap="setResult">摇一摇</button>

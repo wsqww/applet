@@ -1,0 +1,20 @@
+<!-- miniprogram/pages/eat/eat.wxml -->
+<view class="page">
+  <view class="select-wrap">
+    <van-collapse value="{{ activeCells }}" bind:change="collapseOnChange">
+      <van-collapse-item content-class="applet-collapse-item" wx:for="{{menus}}" wx:for-item="item" wx:for-index="typeIdx" wx:key="_id" name="{{item.type}}">
+        <view class="applet-collapse-title" slot="title">
+          <van-checkbox value="{{item.checked}}" data-type-idx="{{typeIdx}}" bind:change="menuTypeToggle">{{item.name}}</van-checkbox>
+        </view>
+        <van-cell custom-class="applet-cell" wx:for="{{item.menu}}" wx:for-item="menu" wx:for-index="menuIdx" wx:key="_id" title="{{menu.name}}"
+          clickable data-type-idx="{{typeIdx}}" data-menu-idx="{{menuIdx}}" bind:click="menuToggle">
+          <van-checkbox value="{{menu.checked}}"></van-checkbox>
+        </van-cell>
+      </van-collapse-item>
+    </van-collapse>
+    <view></view>
+  </view>
+  <view class="result-wrap"></view>
+</view>
+<button size="default" type="primary" bind:tap="setResult">摇一摇</button>
+<!--  -->

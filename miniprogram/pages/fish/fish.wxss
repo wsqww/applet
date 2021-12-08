@@ -1,0 +1,10 @@
+/* miniprogram/pages/fish.wxss */
+.page {
+  height: 100%;
+  padding: 10px;
+  /* background-color: #000; */
+}
+.title {
+  line-height: 22px;
+  /* color: #fff; */
+}
