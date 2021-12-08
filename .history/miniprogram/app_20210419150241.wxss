@@ -1,9 +1,0 @@
-/**app.wxss**/
-
-.applet-collapse-item {
-  padding: 0 15px;
-  margin: -1px 0;
-}
-.applet-cell {
-  justify-content: space-between;
-}
