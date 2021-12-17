@@ -76,3 +76,6 @@ typings/
 .fusebox/
 
 .history
+
+# 小程序 npm 构建后的 文件
+miniprogram/miniprogram_npm
