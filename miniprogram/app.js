@@ -32,4 +32,20 @@ App({
       });
     })
   }
-})
+});
+
+
+// "tabBar": {
+//   "color": "#aaaaaa",
+//   "selectedColor": "#666666",
+//   "backgroundColor": "#ffffff",
+//   "borderStyle": "white",
+//   "list": [
+//     {
+//       "pagePath": "pages/eat/eat",
+//       "text": "饭",
+//       "iconPath": "./images/tabbar/fan.png",
+//       "selectedIconPath": "./images/tabbar/fan_active.png"
+//     }
+//   ]
+// },

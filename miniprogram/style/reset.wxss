@@ -1,0 +1,7 @@
+/* 样式重置 */
+page {
+  height: 100%;
+}
+view {
+  box-sizing: border-box;
+}

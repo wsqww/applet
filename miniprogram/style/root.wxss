@@ -1,0 +1,5 @@
+/* css 变量 */
+page {
+  --black: #333333;
+  --borderColor: #999999;
+}

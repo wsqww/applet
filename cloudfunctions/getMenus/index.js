@@ -6,11 +6,41 @@ cloud.init({
   // env: 'applet-dev-2gl6hkwd97669201',
 });
 const db = cloud.database();
+const _ = db.command
 // const MAX_LIMIT = 100;
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-  const menus = await db.collection('menus').get();
-  console.log(menus);
-  return { data: menus.data };
+  // console.log(event, context);
+  let { OPENID, APPID } = cloud.getWXContext();
+  const public = await db.collection('menus')
+                          .where({type: 'public'})
+                          .field({name: true, menu: true})
+                          .get();
+  const private = await db.collection('menus')
+                          .where({type: 'private', userId: OPENID})
+                          .field({name: true, menu: true})
+                          .get();
+  const vipUser = await db.collection('user')
+                          .where({
+                            vipCode: _.exists(true),
+                            userId: OPENID
+                          })
+                          .field({vipCode: true})
+                          .get({});
+  let vip = [];
+  if (vipUser.data.length > 0) {
+    const vipCode = vipUser.data[0].vipCode;
+    vip = await db.collection('menus')
+                  .where({type: 'vip', vipCode})
+                  .field({name: true, menu: true})
+                  .get();
+  }
+  const result = {
+    public: public.data,
+    private: private.data,
+    vip: vip.data
+  };
+  // console.log(result);
+  return result;
 };

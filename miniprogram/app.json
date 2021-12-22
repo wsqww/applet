@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/fish/fish",
     "pages/eat/eat"
   ],
   "window": {
@@ -9,26 +8,6 @@
     "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTitleText": "",
     "navigationBarTextStyle": "black"
-  },
-  "tabBar": {
-    "color": "#aaaaaa",
-    "selectedColor": "#666666",
-    "backgroundColor": "#ffffff",
-    "borderStyle": "white",
-    "list": [
-      {
-        "pagePath": "pages/fish/fish",
-        "text": "鱼",
-        "iconPath": "./images/tabbar/muyu.png",
-        "selectedIconPath": "./images/tabbar/muyu_active.png"
-      },
-      {
-        "pagePath": "pages/eat/eat",
-        "text": "饭",
-        "iconPath": "./images/tabbar/fan.png",
-        "selectedIconPath": "./images/tabbar/fan_active.png"
-      }
-    ]
   },
   "useExtendedLib": {},
   "sitemapLocation": "sitemap.json"

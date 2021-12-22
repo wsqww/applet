@@ -44,3 +44,26 @@
 
 - [云开发文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)
 
+## 数据库
+
+菜单集合
+```typeScript
+Array<{
+  _id: string; // 系统生成
+  type: 'public' | 'private' | 'vip'; // public: 所有人都可以查看；private: 个人自定义数据；code: 专属码匹配可查看
+  vipCode: string | null; // 专属码，非专属菜单则为 null
+  userId: string | null; // 用户 openId，若非私有 则为 null
+  name: string; // 菜单分类 名称
+  menu: Array<string>; // 菜单内容
+}>
+```
+
+专属码用户
+```typescript
+// 若无专属码，则不在此记录
+Array<{
+  _id: string; // 系统生成
+  userId: string; // 用户 openId
+  vipCode: Array<string>; // 此用户可使用的 专属码
+}>
+```

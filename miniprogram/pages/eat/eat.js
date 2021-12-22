@@ -10,7 +10,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    menus: [],
+    menus: {
+      public: [],
+      private: [],
+      vip: [],
+    },
     activeCells: [],
     selected: [],
     result: '',
@@ -61,23 +65,29 @@ Page({
       data: {},
       success: res => {
         // console.log(res);
-        _this.setMenus(res.result.data)
+        _this.setMenus(res.result)
       },
       fail: err => { console.log(err) }
     });
   },
 
   setMenus: function (menus) {
-    menus.map(item => {
-      item.checked = false;
-      item.menu = item.menu.map(menu => {
-        menu.checked = false;
-        return menu;
-      })
-      return item;
+    Object.keys(menus).forEach(key => {
+      menus[key] = menus[key].map(item => {
+        item.checked = false;
+        item.down = false;
+        item.menu = item.menu.map(menu => {
+          const menuInfo = {
+            name: menu,
+            checked: false
+          };
+          return menuInfo;
+        })
+        return item;
+      });
     });
     this.setData({ menus });
-    // console.log(this.data.menus);
+    console.log(this.data.menus);
   },
 
   setResult: function () {

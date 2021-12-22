@@ -1,4 +1,3 @@
 /**app.wxss**/
-page {
-  height: 100%;
-}
+@import './style/root.wxss';
+@import './style/reset.wxss';

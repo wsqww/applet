@@ -23,9 +23,8 @@ export default class Shake {
   onShake = () => {};
 
   /**
-   * 
-   * @param {*} config 
-   * @param config.onSake 摇一摇成功回调 
+   * @param {*} config
+   * @param config.onSake 摇一摇成功回调
    */
   openShakeEvent(config = {}) {
     this.shakeInfo.openFlag = true;
@@ -33,7 +32,7 @@ export default class Shake {
     if (config.hasOwnProperty('onShake')) {
       this.onShake = config.onShake;
     }
-  
+
     wx.startAccelerometer({
       success: () => {
         // console.log('shake start success');
@@ -43,7 +42,7 @@ export default class Shake {
         console.log('shake start fail');
       }
     });
-    
+
   }
 
   onAccelerometerChange() {
@@ -63,7 +62,7 @@ export default class Shake {
         (this.shakeInfo.x + this.shakeInfo.y + this.shakeInfo.z) -
         (this.shakeInfo.lastX + this.shakeInfo.lastY + this.shakeInfo.lastZ)
       ) / diffTime * 10000;
-      console.log(speed);
+      // console.log(speed);
       // 摇一摇幅度足够大，成功
       if (speed > this.shakeInfo.shakeSpeed) {
         // console.log('shake success');
