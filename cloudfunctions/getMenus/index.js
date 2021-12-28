@@ -7,12 +7,11 @@ cloud.init({
 });
 const db = cloud.database();
 const _ = db.command
-// const MAX_LIMIT = 100;
 
 // 云函数入口函数
 exports.main = async (event, context) => {
   // console.log(event, context);
-  let { OPENID, APPID } = cloud.getWXContext();
+  const { OPENID } = cloud.getWXContext();
   const public = await db.collection('menus')
                           .where({type: 'public'})
                           .field({name: true, menu: true})
@@ -27,7 +26,7 @@ exports.main = async (event, context) => {
                             userId: OPENID
                           })
                           .field({vipCode: true})
-                          .get({});
+                          .get();
   let vip = [];
   if (vipUser.data.length > 0) {
     const vipCode = vipUser.data[0].vipCode;
@@ -36,11 +35,15 @@ exports.main = async (event, context) => {
                   .field({name: true, menu: true})
                   .get();
   }
-  const result = {
+  const data = {
     public: public.data,
     private: private.data,
     vip: vip.data
   };
   // console.log(result);
-  return result;
+  return {
+    status: 'ok',
+    msg: 'get menus: ok',
+    data
+  };
 };
