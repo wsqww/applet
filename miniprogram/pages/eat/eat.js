@@ -15,7 +15,6 @@ Page({
       private: [],
       vip: [],
     },
-    activeCells: [],
     selected: [],
     result: '',
     resultShow: false,
@@ -87,14 +86,57 @@ Page({
       });
     });
     this.setData({ menus });
-    console.log(this.data.menus);
+    // console.log(this.data.menus);
+  },
+
+  collapseToggle(event) {
+    // console.log(event);
+    const type = event.currentTarget.dataset.type;
+    const index = event.currentTarget.dataset.idx;
+    const down = !this.data.menus[type][index].down;
+    // console.log(type, down, `menus.${type}[${index}].down`);
+    this.setData({ [`menus.${type}[${index}].down`]: down });
+  },
+
+  menuListOnChange(event) {
+    const type = event.currentTarget.dataset.type;
+    const idx = event.currentTarget.dataset.idx;
+    const checked = !this.data.menus[type][idx].checked;
+    let menuObj = this.data.menus[type][idx];
+    menuObj.checked = checked;
+    menuObj.menu = menuObj.menu.map(item => {
+      item.checked = checked;
+      return item;
+    });
+    this.setData({ [`menus.${type}[${idx}]`]: menuObj });
+  },
+
+  menuOnChange(event) {
+    const type = event.currentTarget.dataset.type;
+    const idx = event.currentTarget.dataset.idx;
+    const menuIdx = event.currentTarget.dataset.menuIdx;
+    let menuObj = this.data.menus[type][idx];
+    const checked = !this.data.menus[type][idx].menu[menuIdx].checked;
+    menuObj.menu[menuIdx].checked = checked;
+    const checkedLength = menuObj.menu.filter(item => item.checked).length;
+    menuObj.checked = menuObj.menu.length === checkedLength;
+    this.setData({[`menus.${type}[${idx}]`]: menuObj});
+    // console.log(this.data.menus[type][idx]);
   },
 
   setResult: function () {
-    let selected = this.data.menus.map(item => {
-      return item.menu.filter(menu => menu.checked).map(menu => menu.name);
-    }).flat();
-    // console.log(this.data.menus, arr);
+    let selected = Object.keys(this.data.menus).map(key => {
+      return this.data.menus[key].map(item => {
+        let filterMenu = [];
+        if(item.checked) {
+          filterMenu = item.menu;
+        } else {
+          filterMenu = item.menu.filter(menu => menu.checked);
+        }
+        return filterMenu.map(menu => menu.name);
+      });
+    }).flat(2);
+    // console.log(selected);
     // return;
     if (selected.length < 1) {
       selected = ['未做任何选择'];
@@ -109,36 +151,6 @@ Page({
 
   randomInit: function (min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min
-  },
-
-  collapseOnChange(event) {
-    this.setData({
-      activeCells: event.detail,
-    });
-  },
-
-  menuTypeToggle(event) {
-    // console.log(event);
-    const typeIdx = event.currentTarget.dataset.typeIdx;
-    const checked = !this.data.menus[typeIdx].checked;
-    // console.log(typeIdx, checked);
-    this.data.menus[typeIdx].menu.forEach( (item, index) => {
-      this.setData({ [`menus[${typeIdx}].menu[${index}].checked`]: checked });
-    });
-    this.setData({ [`menus[${typeIdx}].checked`]: checked });
-    // console.log(this.data.menus[typeIdx]);
-  },
-
-  menuToggle(event) {
-    // console.log(event);
-    const typeIdx = event.currentTarget.dataset.typeIdx;
-    const menuIdx = event.currentTarget.dataset.menuIdx;
-    const checked = !this.data.menus[typeIdx].menu[menuIdx].checked;
-    // console.log(typeIdx, menuIdx, checked);
-    this.setData({ [`menus[${typeIdx}].menu[${menuIdx}].checked`]: checked });
-    // console.log(this.data.menus[typeIdx].menu[menuIdx]);
-    const checkedLength = this.data.menus[typeIdx].menu.filter(menu => menu.checked).length;
-    this.setData({ [`menus[${typeIdx}].checked`]: checkedLength === this.data.menus[typeIdx].menu.length });
   },
 
   showResultMask() {

@@ -1,14 +1,59 @@
 <!-- miniprogram/pages/eat/eat.wxml -->
 <view class="page">
-  <view class="select-wrap">
-    
+  <view class="page-head">
+    <!-- <view class="page-title">今天吃什么？</view> -->
+    <!-- <view class="page-des">请在下方选择需要的选项，摇一摇 将在选中项中随机产生最终结果。</view> -->
+  </view>
+  <view class="menus-wrap">
+    <!-- <divider wx:if="{{menus.public.length > 0}}">南北大战</divider>
+    <view class="collapse {{ item.down ? '' : 'close'}}" wx:for="{{menus.public}}" wx:key="_id" wx:for-index="idx">
+      <view class="collapse-head">
+        <view class="head-left">
+          <checkbox checked="{{item.checked}}" data-type="public" data-idx="{{idx}}" bindtap="menuListOnChange"> {{item.name}} </checkbox>
+        </view>
+        <view class="head-right iconfont icon-arrow-down" data-idx="{{idx}}" data-type="public" bindtap="collapseToggle"></view>
+      </view>
+      <view class="collapse-content">
+        <view class="cell" wx:for="{{item.menu}}" wx:for-item="menu" wx:key="name" wx:for-index="menuIdx">
+          <checkbox checked="{{menu.checked}}" data-type="public" data-idx="{{idx}}" data-menu-idx="{{menuIdx}}" bindtap="menuOnChange"> {{menu.name}} </checkbox>
+        </view>
+      </view>
+    </view> -->
+    <divider wx:if="{{menus.private.length > 0}}">个人专属</divider>
+    <view class="collapse {{ item.down ? '' : 'close'}}" wx:for="{{menus.private}}"  wx:key="_id" wx:for-index="idx">
+      <view class="collapse-head">
+        <view class="head-left">
+          <checkbox checked="{{item.checked}}" data-type="private" data-idx="{{idx}}" bindtap="menuListOnChange"> {{item.name}} </checkbox>
+        </view>
+        <view class="head-right iconfont icon-arrow-down" data-idx="{{idx}}" data-type="private" bindtap="collapseToggle"></view>
+      </view>
+      <view class="collapse-content">
+        <view class="cell" wx:for="{{item.menu}}" wx:for-item="menu" wx:key="name" wx:for-index="menuIdx">
+          <checkbox checked="{{menu.checked}}" data-type="private" data-idx="{{idx}}" data-menu-idx="{{menuIdx}}" bindtap="menuOnChange"> {{menu.name}} </checkbox>
+        </view>
+      </view>
+    </view>
+    <!-- <divider wx:if="{{menus.vip.length > 0}}">VIP 专区</divider>
+    <view class="collapse {{ item.down ? '' : 'close'}}" wx:for="{{menus.vip}}" wx:key="_id" wx:for-index="idx">
+      <view class="collapse-head">
+        <view class="head-left">
+          <checkbox checked="{{item.checked}}" data-type="vip" data-idx="{{idx}}" bindtap="menuListOnChange"> {{item.name}} </checkbox>
+        </view>
+        <view class="head-right iconfont icon-arrow-down" data-idx="{{idx}}" data-type="vip" bindtap="collapseToggle"></view>
+      </view>
+      <view class="collapse-content">
+        <view class="cell" wx:for="{{item.menu}}" wx:for-item="menu" wx:key="name" wx:for-index="menuIdx">
+          <checkbox checked="{{menu.checked}}" data-type="vip" data-idx="{{idx}}" data-menu-idx="{{menuIdx}}" bindtap="menuOnChange"> {{menu.name}} </checkbox>
+        </view>
+      </view>
+    </view> -->
   </view>
 </view>
 
-<!-- <button style="display: block; width: 100px; margin: 30px auto;" size="mini" type="primary" bind:tap="setResult">摇一摇</button>
+<button style="display: block; width: 100px; margin: 30px auto;" size="mini" type="primary" bind:tap="setResult">摇一摇</button>
 
 <view class="result-wrap {{resultShow ? 'show': '' }}">
-  <van-icon custom-class="close" name="cross" size="26px" bind:click="closeResultMask"></van-icon>
+  <view class="close iconfont icon-cuohao" bindtap="closeResultMask"></view>
   <view class="main">
     <view class="selected-list {{resultAnimation ? 'animation' : ''}}">
       <block wx:if="{{resultAnimation}}">
@@ -17,4 +62,4 @@
       <view wx:else class="result selected-item">{{result}}</view>
     </view>
   </view>
-</view> -->
+</view>

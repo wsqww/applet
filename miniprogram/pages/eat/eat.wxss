@@ -1,29 +1,73 @@
 /* miniprogram/pages/eat/eat.wxss */
-.select-title {
-  padding: 20px;
-  font-size: 18px;
-  color: #333333;
+.page-title {
+  padding: 40rpx;
+  font-size: 36rpx;
+  color: var(--black);
   text-align: center;
 }
-.select-des {
-  font-size: 14px;
-  color: #666;
-  padding: 0 20px 20px;
+.page-des {
+  font-size: 28rpx;
+  color: var(--font-light);
+  padding: 0 40rpx 40rpx;
 }
-.applet-collapse {
-  line-height: 36px !important;
+
+.menus-wrap {
+  padding: 20rpx;
 }
-.applet-collapse-item {
-  padding: 0 15px !important;
-  margin: -1px 0;
+.collapse {
+  box-shadow: 0 0 10rpx 1px var(--shadow-color);
+  border-radius: 8rpx;
+  padding: 0 30rpx;
+  margin-bottom: 30rpx;
+  background-color: var(--white);
 }
-.applet-cell {
+.collapse-head {
+  padding: 15rpx 0;
+  line-height: 80rpx;
+  display: flex;
   justify-content: space-between;
+  align-items: center;
 }
-.applet-cell > .van-cell__title,
-.applet-cell > .van-cell__value {
-  flex: unset;
+.head-left {
+  flex: 1;
 }
+.head-left checkbox {
+  width: 100%;
+}
+.head-right.iconfont {
+  width: 80rpx;
+  height: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+  color: var(--font-light);
+  transition: .3s;
+}
+.collapse.close .head-right.iconfont{
+  transform: rotate(-90deg);
+}
+.collapse-content {
+  padding-left: 15rpx;
+  padding-bottom: 15rpx;
+  height: auto;
+  transition: .3s;
+}
+.collapse.close .collapse-content {
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.cell {
+  display: flex;
+  align-items: center;
+  border-top: 2rpx solid var(--border-color);
+  line-height: 80rpx;
+  padding-left: 15rpx;
+}
+.cell checkbox {
+  flex: 1;
+}
+
+
 
 .result-wrap {
   position: fixed;
@@ -42,16 +86,18 @@
 
 .result-wrap .close {
   position: absolute;
-  top: 30px;
-  right: 30px;
+  top: 60rpx;
+  right: 60rpx;
+  font-size: 40rpx;
+  color: var(--font-light);
 }
 
 .result-wrap .main {
   position: absolute;
-  top: calc( 50% - 125px );
-  left: calc( 50% - 150px );
-  width: 300px;
-  height: 250px;
+  top: calc( 50% - 250rpx );
+  left: calc( 50% - 300rpx );
+  width: 600rpx;
+  height: 500rpx;
   display: flex;
 }
 
@@ -60,9 +106,9 @@
   flex-wrap: wrap;
   align-items: center;
   width: 100%;
-  line-height: 50px;
+  line-height: 100rpx;
   text-align: center;
-  font-size: 36px;
+  font-size: 72rpx;
   /* border-radius: 50%; */
   overflow: hidden;
   /* background-color: #f9f9f9; */
@@ -77,7 +123,7 @@
 .selected-list .selected-item:nth-child(3),
 .selected-list .result {
   width: 100%;
-  font-size: 42px;
+  font-size: 84rpx;
   font-weight: bold;
   color: #1989fa;
 }

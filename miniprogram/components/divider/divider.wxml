@@ -1,0 +1,7 @@
+<!--components/divider/divider.wxml-->
+<view class="divider">
+  <view class="divider-before"></view>
+  <slot></slot>
+  <!-- <view class="divider-text">{{text}}</view> -->
+  <view class="divider-after"></view>
+</view>

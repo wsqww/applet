@@ -1,0 +1,20 @@
+/* components/divider/divider.wxss */
+.divider {
+  height: 30rpx;
+  margin: 40rpx 0 20rpx;
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+}
+.divider-before,
+.divider-after {
+  border-top: 2rpx solid var(--border-color);
+}
+.divider-before {
+  width: 40rpx;
+  padding-right: 20rpx
+}
+.divider-after {
+  flex: 1;
+  padding-left: 20rpx
+}

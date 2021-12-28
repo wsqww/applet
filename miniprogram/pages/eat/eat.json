@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "🍚",
-  "usingComponents": { }
+  "usingComponents": {
+    "divider": "../../components/divider/divider"
+  }
 }

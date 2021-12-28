@@ -1,3 +1,4 @@
 /**app.wxss**/
 @import './style/root.wxss';
 @import './style/reset.wxss';
+@import './style/icon-font.wxss';
