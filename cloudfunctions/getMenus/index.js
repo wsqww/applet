@@ -32,7 +32,7 @@ exports.main = async (event, context) => {
     const vipCode = vipUser.data[0].vipCode;
     vip = await db.collection('menus')
                   .where({type: 'vip', vipCode: _.in(vipCode)})
-                  .field({name: true, menu: true})
+                  .field({name: true, menu: true, vipCode: true})
                   .get();
   }
   const data = {

@@ -9,15 +9,29 @@ const _ = db.command
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-  const menus = event.menus || ['a', 'b', 'c'];
-  const id = event.id || 'd20aea5861c170dd014a51260a1cd320';
-  let paramsErr = '';
-  if (menus.length < 1) { paramsErr = 'menus: cannot be empty'; } 
-  if ( id === '') { paramsErr = 'id: cannot be empty'; }
-  if (paramsErr !== '') {
+  const menus = event.menus || [];
+  if (menus.length < 1) {
     return {
       status: 'error',
-      msg: paramsErr
+      msg: 'menus: cannot be empty'
+    };
+  }
+
+  if (event.type === 'update') {
+    return updateMenu(event, context);
+  }
+  // private 首次保存 需要新增数据
+  if (event.type === 'add') {
+    return addMenu(event, context);
+  }
+}
+
+function updateMenu(event, context) {
+  const id = event.id || '';
+  if ( id === '') {
+    return {
+      status: 'error',
+      msg: 'id: cannot be empty'
     };
   }
 
@@ -30,5 +44,24 @@ exports.main = async (event, context) => {
   return {
     status: 'ok',
     msg: 'menus: update sucess'
+  }
+}
+
+function addMenu(event, context) {
+  const { OPENID } = cloud.getWXContext();
+
+  await db.collection('menus')
+          .add({
+            data: {
+              menu: event.menus,
+              name: '蓄谋已久',
+              type: 'private',
+              userId: OPENID
+            }
+          });
+
+  return {
+    status: 'ok',
+    msg: 'menus: add sucess'
   }
 }
